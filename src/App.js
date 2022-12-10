@@ -2,12 +2,15 @@ import './App.css';
 import {Box, Card, CircularProgress, Grid, Typography} from "@mui/material";
 import useSWR from 'swr';
 import {format, parseISO} from 'date-fns';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 function App() {
     const {data: tempData, isLoading: isLoadingTemp} = useSWR(`/farm/temp`);
     const {data: humidityData, isLoading: isLoadingHumidity} = useSWR(`/farm/humidity`);
     const {data: moistureData, isLoading: isLoadingMoisture} = useSWR(`/farm/moisture`);
     const {data: lightData, isLoading: isLoadingLight} = useSWR(`/farm/light`);
+
+    console.log(humidityData?.updatedAt)
 
     return (
         <>
@@ -27,7 +30,7 @@ function App() {
                                     Farm Temperature:
                                 </Typography>
                                 <Typography variant="h3" gutterBottom>
-                                    {tempData?.temp}°
+                                    {tempData?.temp}° Celcius
                                 </Typography>
                                 <Typography variant="h5" gutterBottom>
                                     Updated
@@ -73,7 +76,7 @@ function App() {
                                 </Typography>
                                 <Typography variant="h5" gutterBottom>
                                     Updated
-                                    At: {tempData?.moistureData ? format(new Date(parseISO(moistureData?.updatedAt)), 'dd/MM/yy hh:mm a') : ''}
+                                    At: {moistureData?.updatedAt ? format(new Date(parseISO(moistureData?.updatedAt)), 'dd/MM/yy hh:mm a') : ''}
                                 </Typography>
                             </Card>
                         </Grid>
