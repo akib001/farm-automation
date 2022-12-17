@@ -1,5 +1,6 @@
 import {Route, Routes} from "react-router-dom";
 import FarmPage from "./Pages/FarmPage";
+import Auth from "./Pages/AuthPage";
 
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
 
     return (
         <Routes>
-            <Route path="/" element={<FarmPage/>} />
+            <Route path="/" element={<Auth />} />
         </Routes>
     );
 }
