@@ -182,7 +182,7 @@ function FarmerLayout(props) {
                 </Toolbar>
             </Container>
         </AppBar>
-            <Box component="main"><Outlet/></Box>
+            <Container maxWidth="xl"><Outlet/></Container>
         </ThemeProvider>
     );
 }
