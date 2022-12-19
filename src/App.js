@@ -1,7 +1,6 @@
 import {Route, Routes} from "react-router-dom";
-import FarmPage from "./Pages/FarmPage";
-import Auth from "./Pages/AuthPage";
 import FarmerLayout from "./Components/layouts/FarmerLayout";
+import FarmerHomePage from "./Pages/FarmerHomePage";
 
 
 function App() {
@@ -10,8 +9,8 @@ function App() {
     return (
         <Routes>
             {/*<Route path="/" element={<Auth />} />*/}
-            <Route index element={<FarmerLayout/>}>
-
+            <Route path="/" element={<FarmerLayout/>}>
+                <Route index element={<FarmerHomePage />} />
             </Route>
         </Routes>
     );

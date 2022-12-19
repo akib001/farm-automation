@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {useNavigate} from "react-router-dom";
 import {ThemeProvider, createTheme} from '@mui/material/styles';
+import { Outlet } from "react-router-dom"
 
 const pages = [{
     menuTitle: 'Home', link: '/',
@@ -181,7 +182,7 @@ function FarmerLayout(props) {
                 </Toolbar>
             </Container>
         </AppBar>
-            <Box component="main">{props.children}</Box>
+            <Box component="main"><Outlet/></Box>
         </ThemeProvider>
     );
 }
