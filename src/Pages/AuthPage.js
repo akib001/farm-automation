@@ -55,12 +55,9 @@ export default function Auth() {
     const onSubmitHandler = async (data) => {
         setLoading(true);
         setErrorMessage('');
-        console.log('alskdjf')
-        console.log('data', data)
-        return;
         if (isSignIn && authMode === 'farmer') {
             try {
-                const loginRes = await axios.post('/auth/user/login', {
+                const loginRes = await axios.post('/auth/farmer/login', {
                     ...data, role: 'farmer',
                 });
                 dispatch(profileActions.userLogin(loginRes.data));
@@ -75,12 +72,12 @@ export default function Auth() {
         // Farmer Signup
         if (!isSignIn && authMode === 'farmer') {
             try {
-                await axios.put('/auth/user/signup', {
+                await axios.put('/auth/farmer/signup', {
                     ...data, role: 'farmer',
                 });
                 console.log('Farmer Sign UP');
 
-                const loginRes = await axios.post('/auth/user/login', {
+                const loginRes = await axios.post('/auth/farmer/login', {
                     ...data, role: 'farmer',
                 });
                 dispatch(profileActions.userLogin(loginRes.data));
@@ -93,7 +90,7 @@ export default function Auth() {
 
         if (isSignIn && authMode === 'consumer') {
             try {
-                const loginRes = await axios.post('/auth/admin/login', {
+                const loginRes = await axios.post('/auth/consumer/login', {
                     ...data, role: 'consumer',
                 });
                 dispatch(profileActions.userLogin(loginRes.data));
@@ -106,11 +103,11 @@ export default function Auth() {
 
         if (!isSignIn && authMode === 'consumer') {
             try {
-                await axios.put('/auth/admin/signup', {
+                await axios.put('/auth/consumer/signup', {
                     ...data, role: 'consumer',
                 });
                 console.log('Consumer Sign UP');
-                const loginRes = await axios.post('/auth/admin/login', {
+                const loginRes = await axios.post('/auth/consumer/login', {
                     ...data, role: 'consumer',
                 });
                 dispatch(profileActions.userLogin(loginRes.data));
