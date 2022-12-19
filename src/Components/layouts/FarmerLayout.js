@@ -19,9 +19,9 @@ import { Outlet } from "react-router-dom"
 const pages = [{
     menuTitle: 'Home', link: '/',
 }, {
-    menuTitle: 'Consumers List', link: '/farmer/consumer-list',
+    menuTitle: 'Consumers List', link: '/consumers',
 }, {
-    menuTitle: 'Farm', link: '/farmer/farm',
+    menuTitle: 'Farm', link: '/farm',
 }];
 
 function FarmerLayout(props) {
@@ -61,7 +61,7 @@ function FarmerLayout(props) {
     return (<ThemeProvider theme={darkTheme}><AppBar position="sticky" color="secondary">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}/>
+                    {/*<AdbIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}/>*/}
                     <Typography
                         variant="h6"
                         noWrap
@@ -72,12 +72,12 @@ function FarmerLayout(props) {
                             display: {xs: 'none', md: 'flex'},
                             fontFamily: 'monospace',
                             fontWeight: 700,
-                            letterSpacing: '.3rem',
+                            letterSpacing: '.1rem',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        Farm Automation
                     </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
@@ -116,9 +116,9 @@ function FarmerLayout(props) {
 
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
+                    {/*<AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>*/}
                     <Typography
-                        variant="h5"
+                        variant="h6"
                         noWrap
                         component="a"
                         href=""
@@ -127,13 +127,13 @@ function FarmerLayout(props) {
                             display: {xs: 'flex', md: 'none'},
                             flexGrow: 1,
                             fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
+                            fontWeight: 600,
+                            letterSpacing: '.0.5rem',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        Farm Automation
                     </Typography>
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                         {pages.map((item, index) => (<Button
