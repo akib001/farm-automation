@@ -21,12 +21,10 @@ import {profileActions} from "../../store/profile-slice";
 const pages = [{
     menuTitle: 'Home', link: '/',
 }, {
-    menuTitle: 'Consumers List', link: '/consumers',
-}, {
-    menuTitle: 'Farm', link: '/farm',
+    menuTitle: 'Farmer List', link: '/farmers',
 }];
 
-function FarmerLayout(props) {
+function ConsumerLayout(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -192,4 +190,4 @@ function FarmerLayout(props) {
     );
 }
 
-export default FarmerLayout;
+export default ConsumerLayout;

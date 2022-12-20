@@ -163,14 +163,39 @@ export default function Auth() {
                     <Grid container component="form" mt={1} spacing={3}>
 
                         {isSignIn &&
-                            (<><Grid item xs={12}>
+                        (<><Grid item xs={12}>
+                            <FormInputText
+                                name={'mobile'}
+                                control={control}
+                                label="Phone Number"
+                            />
+                        </Grid>
+                            <Grid item xs={12}>
                                 <FormInputText
-                                    name={'mobile'}
+                                    name={'password'}
                                     control={control}
-                                    label="Phone Number"
+                                    label="Password"
+                                    type="password"
                                 />
                             </Grid>
-                                <Grid item xs={12}>
+                            <Grid item xs={12}>
+                                <FormControlLabel
+                                    control={<Checkbox value="remember" color="primary"/>}
+                                    label="Remember me"
+                                />
+                            </Grid></>)}
+                        {/*For Sign Up Page*/}
+                        {!isSignIn && (
+                            <>
+                                <Grid item xs={6}>
+                                    <FormInputText
+                                        name={'mobile'}
+                                        control={control}
+                                        label="Mobile"
+                                    />
+                                </Grid>
+
+                                <Grid item xs={6}>
                                     <FormInputText
                                         name={'password'}
                                         control={control}
@@ -178,15 +203,7 @@ export default function Auth() {
                                         type="password"
                                     />
                                 </Grid>
-                                <Grid item xs={12}>
-                                    <FormControlLabel
-                                        control={<Checkbox value="remember" color="primary"/>}
-                                        label="Remember me"
-                                    />
-                                </Grid></>)}
-                        {/*For Sign Up Page*/}
-                        {!isSignIn && (
-                            <>
+
                                 <Grid item xs={6}>
                                     <FormInputText
                                         name={'name'}
@@ -195,13 +212,6 @@ export default function Auth() {
                                     />
                                 </Grid>
 
-                                <Grid item xs={6}>
-                                    <FormInputText
-                                        name={'mobile'}
-                                        control={control}
-                                        label="Mobile"
-                                    />
-                                </Grid>
 
                                 <Grid item xs={6}>
                                     <FormInputText
@@ -269,7 +279,7 @@ export default function Auth() {
                                         )}
                                     />
                                 </Grid>
-                                {(authMode === 'farmer' && (<Grid item xs={12}>
+                                {(authMode === 'farmer' && (<Grid item xs={6}>
                                     <FormInputText
                                         name={'present_store'}
                                         control={control}
