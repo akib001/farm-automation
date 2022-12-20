@@ -8,9 +8,7 @@ import CardComponent from "../Components/layouts/CardComponent";
 const ConsumerHomePage = () => {
     const {data: farmerList, isLoading: isFarmerList} = useSWR(`/consumer/fetch-farmers-list`);
 
-    console.log('farmerList', farmerList);
-
-    return (<Box>
+    return (<Box mb={4}>
         {(farmerList?.farmers || []).map((item, index) => (
             <CardComponent key={index}
                            name={item?.name} mobile={item?.mobile} division={item?.division} district={item?.district}

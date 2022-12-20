@@ -3,6 +3,7 @@ import useSWR from 'swr';
 import {format, parseISO} from 'date-fns';
 import {DataGrid} from "@mui/x-data-grid";
 import {useEffect, useMemo, useState} from "react";
+import {useSelector} from "react-redux";
 
 function createData(id, temp, humidity, moisture, light, updatedAt) {
     return {
@@ -13,17 +14,16 @@ function createData(id, temp, humidity, moisture, light, updatedAt) {
 function FarmPage() {
     const [rows, setRows] = useState([]);
 
-    const {data: tempData, isLoading: isLoadingTemp} = useSWR(`/farm/temp`);
-    const {data: humidityData, isLoading: isLoadingHumidity} = useSWR(`/farm/humidity`);
-    const {data: moistureData, isLoading: isLoadingMoisture} = useSWR(`/farm/moisture`);
-    const {data: lightData, isLoading: isLoadingLight} = useSWR(`/farm/light`);
+    const farmerId = useSelector(state => state.profile.userId);
 
+    const {data: farmData, isLoading: isLoadingFarmData} = useSWR(`/farm/get-single-farm-data/${farmerId}`);
 
-    const {data: allFarmData, isLoading: isLoadingAllFarmData} = useSWR(`/farm/all-farm-data`);
+    const {data: allFarmData, isLoading: isLoadingAllFarmData} = useSWR(`/farm/get-all-farm-data/${farmerId}`);
+
 
     useEffect(() => {
-        if (allFarmData?.farmData?.length > 0) {
-            allFarmData?.farmData?.map((item, index) => {
+        if (allFarmData?.data?.length > 0) {
+            allFarmData?.data?.map((item, index) => {
                 const row = createData(
                     item?._id,
                     item?.temp,
@@ -40,19 +40,17 @@ function FarmPage() {
     const columns = useMemo(
         () => [
             {field: 'id', hide: true},
-            {field: 'temp', headerName: 'Temperature', width: 110,   headerAlign: 'center', align: 'center'},
-            {field: 'humidity', headerName: 'Humidity', width: 110,   headerAlign: 'center', align: 'center'},
-            {field: 'moisture', headerName: 'Moisture', width: 110,   headerAlign: 'center', align: 'center'},
-            {field: 'light', headerName: 'Light', width: 110,   headerAlign: 'center', align: 'center'},
-            {field: 'updatedAt', headerName: 'Updated At', width: 150,   headerAlign: 'center', align: 'center'},
+            {field: 'temp', headerName: 'Temperature', width: 110, headerAlign: 'center', align: 'center'},
+            {field: 'humidity', headerName: 'Humidity', width: 110, headerAlign: 'center', align: 'center'},
+            {field: 'moisture', headerName: 'Moisture', width: 110, headerAlign: 'center', align: 'center'},
+            {field: 'light', headerName: 'Light', width: 110, headerAlign: 'center', align: 'center'},
+            {field: 'updatedAt', headerName: 'Updated At', width: 150, headerAlign: 'center', align: 'center'},
         ],
         []
     );
 
-    console.log('all farm data', allFarmData)
-
     return (<>
-        {(!isLoadingTemp && !isLoadingHumidity && !isLoadingMoisture && !isLoadingLight) ? (
+        {(!isLoadingFarmData) ? (
             <Box sx={{flexGrow: 1, padding: {xs: 2, md: 8}}}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
@@ -68,11 +66,11 @@ function FarmPage() {
                                 Farm Temperature:
                             </Typography>
                             <Typography variant="h3" gutterBottom>
-                                {tempData?.temp}° Celcius
+                                {farmData?.data?.temp}° Celcius
                             </Typography>
                             <Typography variant="h5" gutterBottom>
                                 Updated
-                                At: {tempData?.updatedAt ? format(new Date(parseISO(tempData?.updatedAt)), 'dd/MM/yy hh:mm a') : ''}
+                                At: {farmData?.updatedAt ? format(new Date(parseISO(farmData?.updatedAt)), 'dd/MM/yy hh:mm a') : ''}
                             </Typography>
                         </Card>
                     </Grid>
@@ -89,11 +87,11 @@ function FarmPage() {
                                 Farm Humidity:
                             </Typography>
                             <Typography variant="h3" gutterBottom>
-                                {humidityData?.humidity * 100}% g.m-3
+                                {farmData?.data?.humidity * 100}% g.m-3
                             </Typography>
                             <Typography variant="h5" gutterBottom>
                                 Updated
-                                At: {humidityData?.updatedAt ? format(new Date(parseISO(humidityData?.updatedAt)), 'dd/MM/yy hh:mm a') : ''}
+                                At: {farmData?.updatedAt ? format(new Date(parseISO(farmData?.updatedAt)), 'dd/MM/yy hh:mm a') : ''}
                             </Typography>
                         </Card>
                     </Grid>
@@ -110,11 +108,11 @@ function FarmPage() {
                                 Farm Moisture:
                             </Typography>
                             <Typography variant="h3" gutterBottom>
-                                {moistureData?.moisture} dewpoint °F
+                                {farmData?.data?.moisture} dewpoint °F
                             </Typography>
                             <Typography variant="h5" gutterBottom>
                                 Updated
-                                At: {moistureData?.updatedAt ? format(new Date(parseISO(moistureData?.updatedAt)), 'dd/MM/yy hh:mm a') : ''}
+                                At: {farmData?.updatedAt ? format(new Date(parseISO(farmData?.updatedAt)), 'dd/MM/yy hh:mm a') : ''}
                             </Typography>
                         </Card>
                     </Grid>
@@ -131,11 +129,11 @@ function FarmPage() {
                                 Farm Light:
                             </Typography>
                             <Typography variant="h3" gutterBottom>
-                                {lightData?.light} Lux
+                                {farmData?.data?.light} Lux
                             </Typography>
                             <Typography variant="h5" gutterBottom>
                                 Updated
-                                At: {lightData?.updatedAt ? format(new Date(parseISO(lightData?.updatedAt)), 'dd/MM/yy hh:mm a') : ''}
+                                At: {farmData?.updatedAt ? format(new Date(parseISO(farmData?.updatedAt)), 'dd/MM/yy hh:mm a') : ''}
                             </Typography>
                         </Card>
                     </Grid>
@@ -146,24 +144,24 @@ function FarmPage() {
                         </Typography>
 
                         <DataGrid
-                        initialState={{
-                            sorting: {
-                                sortModel: [{field: 'updatedAt', sort: 'asc'}],
-                            },
-                        }}
-                        autoHeight
-                        rows={rows}
-                        columns={columns}
-                        sx={{
-                            color: 'white',
-                            background: '#0e0d0d',
-                            boxShadow: 2,
-                            borderRadius: '10px',
-                            '& .MuiDataGrid-cell:hover': {
-                                color: 'primary.main',
-                            },
-                        }}
-                    />
+                            initialState={{
+                                sorting: {
+                                    sortModel: [{field: 'updatedAt', sort: 'asc'}],
+                                },
+                            }}
+                            autoHeight
+                            rows={rows}
+                            columns={columns}
+                            sx={{
+                                color: 'white',
+                                background: '#0e0d0d',
+                                boxShadow: 2,
+                                borderRadius: '10px',
+                                '& .MuiDataGrid-cell:hover': {
+                                    color: 'primary.main',
+                                },
+                            }}
+                        />
                     </Grid>
                 </Grid>
             </Box>) : (<Box sx={{

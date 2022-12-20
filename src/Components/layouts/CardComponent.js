@@ -7,7 +7,7 @@ const CardComponent = ({
                        }) => {
     return (<Grid container spacing={2} mt={2}>
             <Grid item xs={12}>
-                <Card sx={{mx: {sx: '0', md: '4rem'}, px: '1rem', borderRadius: '25px', py: {xs: '1rem', md: '0'}}}>
+                <Card sx={{mx: {xs: '1rem', md: '4rem'}, px: '1rem', borderRadius: '25px', py: {xs: '1rem', md: '0'}}}>
                     <Grid container spacing={1}>
                         <Grid item xs={12} md={2} alignContent={'center'}>
                             <CardMedia
@@ -31,10 +31,10 @@ const CardComponent = ({
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Box sx={{mx: {xs: 'auto', md: '0'}, mb: '4px'}}>
-                                            <Button sx={{mr: 1}} href={`tel:${mobile}`} startIcon={<LocalPhoneIcon/>}
+                                        <Box sx={{display: 'flex', justifyContent: 'center', flexWrap: 'nowrap'}}>
+                                            <Button sx={{mr: 1, textAlign: 'center'}} href={`tel:${mobile}`} startIcon={<LocalPhoneIcon/>}
                                                     variant="contained" size="small">Call Now</Button>
-                                            <Button variant="contained" size="small">Demand: {quantity} KG {demand}</Button>
+                                            <Button sx={{ textAlign: 'center'}} variant="contained" size="small">Demand: {quantity} KG {demand}</Button>
                                         </Box>
                                     </CardActions>
                                 </Grid>
@@ -42,9 +42,9 @@ const CardComponent = ({
                         </Grid>
                     </Grid>
 
-                </Card>
-            </Grid>
-        </Grid>);
+            </Card>
+        </Grid>
+    </Grid>);
 };
 
 export default CardComponent;
