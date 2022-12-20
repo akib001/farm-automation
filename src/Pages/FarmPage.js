@@ -18,12 +18,12 @@ function FarmPage() {
 
     const {data: farmData, isLoading: isLoadingFarmData} = useSWR(`/farm/get-single-farm-data/${farmerId}`);
 
-    const {data: allFarmData, isLoading: isLoadingAllFarmData} = useSWR(`/farm/get-all-farm-data/${farmerId}`);
+    const {data: allFarmData} = useSWR(`/farm/get-all-farm-data/${farmerId}`);
 
 
     useEffect(() => {
         if (allFarmData?.data?.length > 0) {
-            allFarmData?.data?.map((item, index) => {
+            allFarmData.data?.map((item) => {
                 const row = createData(
                     item?._id,
                     item?.temp,
@@ -32,7 +32,7 @@ function FarmPage() {
                     item?.light,
                     format(new Date(parseISO(item?.updatedAt)), 'dd/MM/yy hh:mm a'),
                 );
-                setRows((prev) => [...prev, row]);
+                return setRows((prev) => [...prev, row]);
             });
         }
     }, [allFarmData]);

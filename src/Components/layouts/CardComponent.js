@@ -14,7 +14,7 @@ const CardComponent = ({
                             component="img"
                             alt="Consumer"
                             sx={{width: 140, padding: '15px', ml: 1, mx: {xs: 'auto', md: '0'}}}
-                            image="/images/farmer.png"
+                            image="https://raw.githubusercontent.com/akib001/farm-automation/master/public/images/farmer.png"
                         />
                     </Grid>
                     <Grid item xs={12} md={10}>

@@ -11,10 +11,8 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import {useNavigate} from "react-router-dom";
-import {ThemeProvider, createTheme} from '@mui/material/styles';
-import { Outlet } from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {useDispatch} from "react-redux";
 import {profileActions} from "../../store/profile-slice";
 

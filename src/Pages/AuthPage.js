@@ -30,7 +30,7 @@ export default function Auth() {
     const dispatch = useDispatch();
 
     const {
-        handleSubmit, control, formState: {errors},
+        handleSubmit, control,
     } = useForm();
 
     const handleAuthMode = (event, changedMode) => {
@@ -123,16 +123,9 @@ export default function Auth() {
                     flexGrow: "0",
                     position: 'relative'
                 }}
-                // sx={{
-                //     backgroundImage: 'url(https://raw.githubusercontent.com/akib001/farm-automation/complete_app/public/images/coverImage.png)',
-                //     backgroundRepeat: 'no-repeat',
-                //     backgroundColor: (t) => t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-                //     backgroundSize: 'cover',
-                //     backgroundPosition: 'center',
-                // }}
             >
 
-                <img src={"/images/farmAutomationCover.png"}
+                <img src={"https://raw.githubusercontent.com/akib001/farm-automation/master/public/images/farmAutomationCover.png"}
                      style={{
                          height: "100%",
                          width: "100%",
@@ -140,6 +133,7 @@ export default function Auth() {
                          position: 'absolute',
                          inset: '0',
                      }}
+                     alt={'Farm Automation'}
                 />
             </Grid>
             <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
