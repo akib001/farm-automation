@@ -1,8 +1,6 @@
 import React from 'react';
 import useSWR from "swr";
-import {Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography} from "@mui/material";
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import HomeIcon from '@mui/icons-material/Home';
+import {Box} from "@mui/material";
 import CardComponent from "../Components/layouts/CardComponent";
 
 const FarmerHomePage = () => {

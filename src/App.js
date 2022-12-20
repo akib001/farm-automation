@@ -16,9 +16,9 @@ function App() {
         switch (userRole) {
             case 'farmer':
                 return <Route path="/" element={<FarmerLayout/>}>
-                        <Route index element={<FarmerHomePage/>}/>
-                        <Route path={'farm'} element={<FarmPage/>}/>
-                        <Route path={'consumers'} element={<FarmerHomePage/>}/>
+                    <Route index element={<FarmerHomePage/>}/>
+                    <Route path={'farm'} element={<FarmPage/>}/>
+                    <Route path={'consumers'} element={<FarmerHomePage/>}/>
                 </Route>
 
             case 'consumer':
