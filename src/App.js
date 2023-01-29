@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 import Auth from "./Pages/AuthPage";
 import ConsumerLayout from "./Components/layouts/ConsumerLayout";
 import ConsumerHomePage from "./Pages/ConsumerHomePage";
+import PrivacyPolicyPage from "./Pages/PrivacyPolicyPage";
 
 function App() {
     const userRole = useSelector(state => state.profile.role);
@@ -35,6 +36,7 @@ function App() {
     return (
         <Routes>
             {getRoutes()}
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage/>}/>
         </Routes>
     );
 }
