@@ -20,12 +20,14 @@ function App() {
                     <Route index element={<FarmerHomePage/>}/>
                     <Route path={'farm'} element={<FarmPage/>}/>
                     <Route path={'consumers'} element={<FarmerHomePage/>}/>
+        
                 </Route>
 
             case 'consumer':
                 return <Route path="/" element={<ConsumerLayout/>}>
                     <Route index element={<ConsumerHomePage/>}/>
                     <Route path={'farmers'} element={<ConsumerHomePage/>}/>
+        
                 </Route>
 
             default:
@@ -36,6 +38,7 @@ function App() {
     return (
         <Routes>
             {getRoutes()}
+            {/* Privacy Policy */}
             <Route path="/privacy-policy" element={<PrivacyPolicyPage/>}/>
         </Routes>
     );
